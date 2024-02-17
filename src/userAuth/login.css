@@ -1,0 +1,26 @@
+.loginform{
+    background-color: rgba(23, 22, 22 , 0.8);
+    backdrop-filter: 20px blur;
+ 
+    color: white;
+    display: none;
+    position: absolute;
+    height: 200px;
+    text-align: left;
+    padding: 10px;
+    border-radius: 18px;
+    z-index: 2;
+    border: 2px double white;
+    
+}
+.loginform input{
+    margin: 20px;
+    padding: 8px;
+    border-radius: 10px;
+
+}
+.CustomButton{
+    border-radius: 50%;
+    padding: 8px;
+    border: 1px solid white;
+}

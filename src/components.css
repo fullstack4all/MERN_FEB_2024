@@ -1,0 +1,15 @@
+.list_data{
+    background-color: teal;
+    height: 300px;
+    width: 80%;
+    margin: 0 auto;
+}
+.App{
+  
+  
+    background-color: rgb(75, 75, 75)     ;
+}
+.App h1{
+    text-align: center;
+    color: red;
+}

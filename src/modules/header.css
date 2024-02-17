@@ -1,0 +1,15 @@
+.header{
+    background-color: slategrey;
+  display: flex;
+}
+.header .my_logo{
+    text-align: left;
+    padding: 10px;
+}
+.my_logo{
+  width: 30%;
+}
+.main_nav{
+  width: 70%;
+  text-align: right;
+}

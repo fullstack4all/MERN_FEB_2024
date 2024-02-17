@@ -1,0 +1,23 @@
+.navbar ul li{
+    display: inline-block;
+    padding: 10px;
+}
+.navbar{
+    width: 70%;
+}
+ul li a{
+    color: white;
+    text-decoration: none;
+    font-size: 20px;
+    font-weight: 600;
+    letter-spacing: 3px;
+}
+.cross{
+    position: absolute;
+    top: 2%;
+    right: 8%;
+    padding: 8px;
+    border-radius: 50%;
+    filter: drop-shadow(3px 3px 3px gray);
+    background-color: red;
+}
