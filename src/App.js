@@ -4,6 +4,8 @@ import './components.css'
 
 import MainSection from './Pages/section1/mianSection.js'
 
+import Counter from './count.js'
+
 function App() {
 
   // const group = [{
@@ -17,6 +19,7 @@ function App() {
       <Header/>
   
       <MainSection/>
+    <Counter/>
     </div>
   );
 }
