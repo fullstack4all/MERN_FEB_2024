@@ -1,0 +1,21 @@
+.container{
+    background-color: teal;
+    display: flex;
+}
+.main-section{
+  padding: 10px;
+  width:50%;
+  overflow: hidden;
+
+
+
+}
+.main-section img{
+    border: 2px solid white;
+    width: 100%;
+    border-radius: 20px;
+    transition: 4s;
+}
+.main-section:hover img{
+    transform:scale(1.6);
+}
