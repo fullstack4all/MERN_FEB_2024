@@ -1,0 +1,16 @@
+.search{
+    position: absolute;
+    top: 25px;
+    left: 25%;
+}
+.search input{
+    width: 470px;
+    padding: 5px;
+    border-radius: 20px;
+}
+::placeholder{
+    padding: 5px;
+    letter-spacing: 3px;
+    color: black;
+    font-weight: 600;
+}
