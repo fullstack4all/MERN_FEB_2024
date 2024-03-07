@@ -1,75 +1,94 @@
-import React ,{useEffect , useReducer} from "react";
 
-import { validate } from "../Validators/validatos";
 
-const InputReducer = (state, action)=>{
-    switch(action.type){
+
+
+
+import React, { useReducer, useEffect } from "react";
+
+import { validate } from '../Validators/validatos';
+
+// import './input.css'
+
+const InputReducer = (state, action) => {
+    switch (action.type) {
         case 'CHANGE':
-            return{
-                ...state, 
+            return {
+                ...state,
                 value: action.value,
-                isvalid: validate(action.value, action.validators)
-
+                isValid: validate(action.value, action.validators)
             };
+
             case 'TOUCH':
                 return{
                     ...state,
-                    isTouched :true
+                    isTouched : true
                 }
-                default:
-                    return state;
-
+        default:
+            return state;
     }
-}
+};
 
-const Reducer = props =>{
-    const [inputState, disptach] = useReducer(InputReducer,{
-        value: '',
-        isvalid: false,
-        isTouched:false
-    })
+const Input = props => {
+
+    const [inputState, dispatch] = useReducer(InputReducer, { 
+        value: '', 
+        isValid: false,
+        isTouched : false
+        
+    });
+
     const {id, onInput} = props;
-    const {value, isvalid} = inputState
+    const {value, isValid} = inputState;
 
     useEffect(()=>{
-        props.onInput(id, value ,isvalid)
-    },[id,value,isvalid , onInput]
-    )
-    const tuchHandler = event =>{
-        disptach({
-            type:'TOUCH',
-
+        props.onInput(id, value, isValid)
+    }, [id, value, isValid, onInput])
+    const tuchHandler = ()=>{
+        dispatch({
+            type:'TOUCH'
         })
     }
+    const changerHandler = event => {
 
-
-    const changeHandler = event =>{
-        disptach({
-            type:'CHANGE',
-            value: event.traget.value,
+        dispatch({
+            type: 'CHANGE', 
+            value: event.target.value,
             validators: props.validators
         })
-    }
+       
+    };
 
-    const element = props.element === 'input' (
+
+    const element = props.element === 'input' ? (
         <input
-            id= {props.id}
-            type= {props.type}
-            placeholder= {props.placeholder}
-            onChange={changeHandler}
+            id={props.id}
+            type={props.type}
+            placeholder={props.placeholder}
+            onChange={changerHandler}
             onBlur={tuchHandler}
             value={inputState.value}
-        
         />
-    )
+    ) :
+        (
+            <textarea
+                id={props.id}
+                rows={props.row || 3}
+                onBlur={tuchHandler}
+                onChange={changerHandler}
+                value={inputState.value}
+            />
+        );
 
-
-
-
-    return(
-        <div>
-            <label></label>
+    return (
+        <div className={`form-control ${!inputState.isValid && inputState.isTouched && 'form-control-invalid'}`}>
+            <label htmlFor={props.id}>{props.label}</label>
+            {element}
+            {!inputState.isValid &&  inputState.isTouched && <p>{props.errorText} </p>}
+            
         </div>
+         
     )
 }
-export default Reducer;
+
+export default Input;
+
