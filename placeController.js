@@ -1,3 +1,8 @@
+const {validationResult} = require('express-validator')
+
+
+
+
 let Dummy_Places = 
 [{
     id:'p1',
@@ -8,6 +13,13 @@ let Dummy_Places =
 }]
 
 const createPlace = (req, res, next)=>{
+
+    const error = validationResult(req)
+    if(!error.isEmpty()){
+        console.log(error)
+        res.status(422).json({message:'Invalid Input passed '})
+    }
+
     const {title, description , addresss , creator} = req.body;
 
     const createdPlace = {

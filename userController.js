@@ -1,3 +1,6 @@
+
+const {validationResult} = require('express-validator')
+
 const Dummy_User = [
     {
         id: 'u1',
@@ -12,6 +15,13 @@ const getUsers = (req, res, next)=>{
 
 };
 const signup = (req, res, next)=>{
+
+    const error = validationResult(req)
+    if(!error.isEmpty()){
+     
+        res.status(422).json({message:'Invalid Input passed '})
+    }
+
     const {name, email, password} = req.body;
 
     const createdUser = {
