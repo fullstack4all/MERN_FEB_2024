@@ -1,6 +1,8 @@
 const {validationResult} = require('express-validator')
 
 
+const Place = require('../models/place')
+
 
 
 let Dummy_Places = 
@@ -12,7 +14,7 @@ let Dummy_Places =
     creator:'u1'
 }]
 
-const createPlace = (req, res, next)=>{
+const createPlace = async (req, res, next)=>{
 
     const error = validationResult(req)
     if(!error.isEmpty()){
@@ -20,15 +22,21 @@ const createPlace = (req, res, next)=>{
         res.status(422).json({message:'Invalid Input passed '})
     }
 
-    const {title, description , addresss , creator} = req.body;
+    const {title, description , address , creator} = req.body;
 
-    const createdPlace = {
+    const createdPlace = new Place( {
         title,
          description ,
-          addresss ,
+          address ,
            creator
-    }
-    Dummy_Places.push(createdPlace);
+    })
+   try{
+    await createdPlace.save();
+  
+   }catch (err){
+    res.status(500).json({message:'Creating place failed, pleace try again'})
+   }
+
     res.status(201).json({place:createdPlace})
 }
 
